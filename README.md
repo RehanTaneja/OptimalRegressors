@@ -44,7 +44,6 @@ pip install -r requirements.txt
   - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
 - **Returns:**
   - model: A DecisionTreeRegressor instance with the optimal configuration
-  - nodes: The optimal max_leaf_nodes value
 
 Find the best max_leaf_nodes for a decision tree:
 
@@ -71,7 +70,6 @@ print("Optimal max_leaf_nodes:", nodes)
   - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
 - **Returns:**
   - model: A RandomForestRegressor instance with the optimal configuration
-  - nodes: The optimal max_leaf_nodes value
 
 Find the best max_leaf_nodes value for a random forest regressor
 
