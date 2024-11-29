@@ -38,6 +38,9 @@ pip install -r requirements.txt
   - trainX,trainy Training data (features & labels)
   - valX,valy Validation  data (features & labels)
   - candidate_nodes (list, optional): A list of max_leaf_nodes values to test. Default: [5, 50, 500, 5000]
+  - candidate_splits (list, optional): A list of min_sample_split values to test. Default: [2,3,4,5,6,7,8,9,10]
+  - candidate_leaves (list,optional): A list of min_sample_leaf values to test. Default: [1,2,3,4,5]
+  - candidate_depths (list,optional): A list of max_depth values to test. Default: [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
   - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
 - **Returns:**
   - model: A DecisionTreeRegressor instance with the optimal configuration
@@ -64,6 +67,7 @@ print("Optimal max_leaf_nodes:", nodes)
   - trainX, trainy: Training data (features and labels)
   - trainX, trainy: Training data (features and labels)
   - candidate_nodes (list, optional): A list of max_leaf_nodes values to test. Default: [5, 50, 500, 5000]
+  - candidate_estimators (list,optional): A list of n_estimator values to test. Default: [50,100,200,300,400,500]
   - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
 - **Returns:**
   - model: A RandomForestRegressor instance with the optimal configuration
