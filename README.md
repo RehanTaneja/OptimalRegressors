@@ -32,7 +32,9 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Optimal Decision Tree Regressor
+### regressors.py
+
+#### OptimalDecisionTreeRegressor
 
 - **Parameters:**
   - trainX,trainy Training data (features & labels)
@@ -60,11 +62,11 @@ model, nodes = OptimalDecisionTreeRegressor(trainX, trainy, valX, valy)
 print("Optimal max_leaf_nodes:", nodes)
 ```
 
-### Optimal Random Forest Regressor
+#### OptimalRandomForestRegressor
 
 - **Parameters:**
   - trainX, trainy: Training data (features and labels)
-  - trainX, trainy: Training data (features and labels)
+  - vsalX, valy: Validation data (features and labels)
   - candidate_nodes (list, optional): A list of max_leaf_nodes values to test. Default: [5, 50, 500, 5000]
   - candidate_estimators (list,optional): A list of n_estimator values to test. Default: [50,100,200,300,400,500]
   - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
@@ -85,12 +87,86 @@ model, nodes = OptimalRandomForestRegressor(trainX, trainy, valX, valy)
 
 print("Optimal max_leaf_nodes:", nodes)
 ```
+### OptimalDecisionTreeRegressors.py
+
+#### OptimalMaxLeafNodes
+
+- **Parameters:**
+ - candidate_nodes: A list of max_leaf_nodes values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for max_leaf_node with minimum minimum absolute error
+
+#### OptimalMinSampleSplit
+
+- **Parameters:**
+ - candidate_splits: A list of min_sample_split values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for min_sample_split with minimum minimum absolute error
+
+#### OptimalMinSampleLeaf
+
+- **Parameters:**
+ - candidate_nleaves: A list of min_sample_leaf values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for min_sample_leaf with minimum minimum absolute error
+
+#### OptimalMaxDepth
+
+- **Parameters:**
+ - candidate_nodes: A list of max_depth values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for max_depth with minimum minimum absolute error
+
+### OptimalRandomForestRegressors.py
+
+#### OptimalMaxLeafNodes
+
+- **Parameters:**
+ - candidate_nodes: A list of max_leaf_nodes values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for max_leaf_node with minimum minimum absolute error
+
+#### OptimalNEstimators
+
+- **Parameters:**
+ - candidate_estimators: A list of n_estimators values to test
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for n_estimators with minimum minimum absolute error
+
+#### OptimalBootstrap
+
+- **Parameters:**
+ - trainX, trainy: Training data (features and labels)
+ - valX, valy: Validation data (features and labels)
+ - mae: Original Mean Absolute Error
+- **Returns:**
+  - Optimal value for bootstrap with minimum minimum absolute error
 
 ## Repository Structure
 
 OptimalRegressors/
 │
-├── OptimalRegressor.py      # Main library file
+├── OptimalDecisionTreeRegressors.py # Methods for getting optimal hyperparameters for DecisionTree
+|-- OptimalRandomForestRegressors.py # Methods for getting optimal hyperparameters for RandomForest
+|-- regressor.py      # Main library file
 ├── requirements.txt         # Python dependencies
 ├── LICENSE                  # License information
 └── README.md                # Project documentation
