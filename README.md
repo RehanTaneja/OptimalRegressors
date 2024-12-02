@@ -162,12 +162,13 @@ print("Optimal max_leaf_nodes:", nodes)
 
 ## Repository Structure
 
+```
 OptimalRegressors/
 │
 ├── OptimalDecisionTreeRegressors.py # Methods for getting optimal hyperparameters for DecisionTree
-|-- OptimalRandomForestRegressors.py # Methods for getting optimal hyperparameters for RandomForest
-|-- regressor.py      # Main library file
+├── OptimalRandomForestRegressors.py # Methods for getting optimal hyperparameters for RandomForest
+├── regressor.py      # Main library file
 ├── requirements.txt         # Python dependencies
 ├── LICENSE                  # License information
 └── README.md                # Project documentation
-
+```
