@@ -97,7 +97,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for max_leaf_node with minimum minimum absolute error
+  - Optimal value for max_leaf_node with minimum absolute error
 
 #### OptimalMinSampleSplit
 
@@ -107,7 +107,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for min_sample_split with minimum minimum absolute error
+  - Optimal value for min_sample_split with minimum absolute error
 
 #### OptimalMinSampleLeaf
 
@@ -117,7 +117,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for min_sample_leaf with minimum minimum absolute error
+  - Optimal value for min_sample_leaf with minimum absolute error
 
 #### OptimalMaxDepth
 
@@ -127,7 +127,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for max_depth with minimum minimum absolute error
+  - Optimal value for max_depth with minimum absolute error
 
 ### OptimalRandomForestRegressors.py
 
@@ -139,7 +139,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for max_leaf_node with minimum minimum absolute error
+  - Optimal value for max_leaf_node with minimum absolute error
 
 #### OptimalNEstimators
 
@@ -149,7 +149,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for n_estimators with minimum minimum absolute error
+  - Optimal value for n_estimators with minimum absolute error
 
 #### OptimalBootstrap
 
@@ -158,7 +158,7 @@ print("Optimal max_leaf_nodes:", nodes)
  - valX, valy: Validation data (features and labels)
  - mae: Original Mean Absolute Error
 - **Returns:**
-  - Optimal value for bootstrap with minimum minimum absolute error
+  - Optimal value for bootstrap with minimum absolute error
 
 ## Repository Structure
 
