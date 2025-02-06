@@ -1,174 +1,93 @@
-# OptimalRegressors
-
-**OptimalRegressors** is a Python library designed to find the optimal configurations for decision tree and random forest regressors. It automates hyperparameter tuning, such as determining the optimal number of leaf nodes, using validation data to improve model performance.
+# Machine Learning Model Optimization
+This repository contains a set of utilities designed to automate the process of optimizing machine learning models using various regression and classification algorithms. The code implements hyperparameter tuning for multiple models using RandomizedSearchCV and provides a framework to compare the performance of these models to find the best one for a given dataset.
 
 ## Features
-
-- **Automatically optimizes hyperparameters for:**
-  - DecisionTreeRegressor
-  - RandomForestRegressor
-- **Allows custom candidate values for hyperparameter tuning.**
-- **Optionally fits the optimized model for direct use.**
-- **Simple, lightweight, and easy to use.**
-
+ - Hyperparameter Optimization: Automatically tunes the hyperparameters of several models (e.g., XGBoost, Decision Trees, Random Forest, KNN, SVM, and more).
+ - Model Selection: Compares the performance of different models and returns the best performing regressor or classifier based on validation data.
+ - Dataset Classification: Automatically classifies datasets to determine whether they are suited for regression or classification tasks, adjusting the optimization approach accordingly.
+ - Cross-validation: Uses cross-validation to ensure robust evaluation during hyperparameter search.
+Supported Models
+ - XGBoost (Regressor and Classifier)
+ - Decision Tree Regressor (DTR)
+ - Gradient Boosting Regressor (GBR)
+ - K-Nearest Neighbors (KNN)
+ - Random Forest (RF)
+ - Support Vector Machine (SVM)
+ - Linear Regression (Ridge,Lasso,Logistic)
 ## Installation
-
-To install **OptimalRegressors**, follow the steps below:
-
-### Clone the Repository
-
+To use the model optimization tools, clone this repository and install the necessary dependencies:
 ```bash
-git clone https://github.com/RehanTaneja/OptimalRegressors.git
-cd OptimalRegressors
+git clone https://github.com/yourusername/ml-model-optimization.git
+cd ml-model-optimization
+pip install -r requirements.txt
 ```
+## Usage
+### Importing the Modules
+In your project, import the necessary modules:
+```Python
+from OptimalXGB import OptimalXGBoost
+from OptimalDTR import OptimalDTR
+from OptimalGBR import OptimalGBR
+from OptimalKNN import OptimalKNN
+from OptimalLinear import OptimalLinear
+from OptimalRF import OptimalRF
+from OptimalSVM import OptimalSVM
+from ClassifyDatasets import classify, get_accuracy_classifiers, get_accuracy_regressors
+```
+### Optimizing a Model
+To optimize a specific model (e.g., XGBoost Regressor), follow these steps:
 
-### Install Dependencies
+ - Prepare your data: Ensure you have the training and validation datasets ready (train_X, train_y, val_X, val_y).
+ - Create the optimal model object:
+```Python
+# For regression (XGBoost Regressor example)
+optimizer = OptimalXGBoost(train_X, train_y, val_X, val_y, type_='regressor')
+```
+ - Run the optimization:
+```Python
+# Perform the optimization
+best_model = optimizer.optimize()
 
-Use pip to install the required dependencies:
+# Evaluate the model
+train_accuracy, val_accuracy = optimizer.evaluate()
 
+print("Training Accuracy: ", train_accuracy)
+print("Validation Accuracy: ", val_accuracy)
+```
+This will automatically perform the necessary hyperparameter tuning and return the best regressor or classifier.
+## File Structure
+```bash
+ml-model-optimization/
+├── __init__.py            # Package initialization
+├── ClassifyDatasets.py    # Dataset classification and accuracy calculation
+├── OptimalDTR.py          # Decision Tree Regressor optimization
+├── OptimalGBR.py          # Gradient Boosting Regressor optimization
+├── OptimalKNN.py          # K-Nearest Neighbors optimization
+├── OptimalLinear.py       # Linear Regression optimization
+├── OptimalRF.py           # Random Forest optimization
+├── OptimalSVM.py          # Support Vector Machine optimization
+├── OptimalXGB.py          # XGBoost optimization
+├── requirements.txt       # Dependencies
+├── README.md              # Documentation
+```
+## Requirements
+This project requires the following Python libraries:
+
+ - scikit-learn: For machine learning algorithms and cross-validation.
+ - xgboost: For XGBoost regressor and classifier.
+ - numpy: For numerical operations.
+ - pandas: For data manipulation.
+You can install the dependencies using pip:
 ```bash
 pip install -r requirements.txt
 ```
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Usage
 
-### regressors.py
 
-#### OptimalDecisionTreeRegressor
 
-- **Parameters:**
-  - trainX,trainy Training data (features & labels)
-  - valX,valy Validation  data (features & labels)
-  - candidate_nodes (list, optional): A list of max_leaf_nodes values to test. Default: [5, 50, 500, 5000]
-  - candidate_splits (list, optional): A list of min_sample_split values to test. Default: [2,3,4,5,6,7,8,9,10]
-  - candidate_leaves (list,optional): A list of min_sample_leaf values to test. Default: [1,2,3,4,5]
-  - candidate_depths (list,optional): A list of max_depth values to test. Default: [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-  - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
-- **Returns:**
-  - model: A DecisionTreeRegressor instance with the optimal configuration
 
-Find the best max_leaf_nodes for a decision tree:
 
-```python
-from OptimalRegressor import OptimalDecisionTreeRegressor
 
-# Example data (replace with your dataset)
-trainX, trainy = [[1], [2], [3]], [2.5, 3.5, 5.0]
-valX, valy = [[1.5], [2.5]], [3.0, 4.0]
 
-# Get the optimal DecisionTreeRegressor
-model, nodes = OptimalDecisionTreeRegressor(trainX, trainy, valX, valy)
-
-print("Optimal max_leaf_nodes:", nodes)
-```
-
-#### OptimalRandomForestRegressor
-
-- **Parameters:**
-  - trainX, trainy: Training data (features and labels)
-  - vsalX, valy: Validation data (features and labels)
-  - candidate_nodes (list, optional): A list of max_leaf_nodes values to test. Default: [5, 50, 500, 5000]
-  - candidate_estimators (list,optional): A list of n_estimator values to test. Default: [50,100,200,300,400,500]
-  - fit (bool, optional): Whether to fit the returned model on the training data. Default: False
-- **Returns:**
-  - model: A RandomForestRegressor instance with the optimal configuration
-
-Find the best max_leaf_nodes value for a random forest regressor
-
-```python
-from OptimalRegressor import OptimalRandomForestRegressor
-
-# Example data (replace with your dataset)
-trainX, trainy = [[1], [2], [3]], [2.5, 3.5, 5.0]
-valX, valy = [[1.5], [2.5]], [3.0, 4.0]
-
-# Get the optimal RandomForestRegressor
-model, nodes = OptimalRandomForestRegressor(trainX, trainy, valX, valy)
-
-print("Optimal max_leaf_nodes:", nodes)
-```
-### OptimalDecisionTreeRegressors.py
-
-#### OptimalMaxLeafNodes
-
-- **Parameters:**
- - candidate_nodes: A list of max_leaf_nodes values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for max_leaf_node with minimum mean absolute error
-
-#### OptimalMinSampleSplit
-
-- **Parameters:**
- - candidate_splits: A list of min_sample_split values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for min_sample_split with minimum mean absolute error
-
-#### OptimalMinSampleLeaf
-
-- **Parameters:**
- - candidate_nleaves: A list of min_sample_leaf values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for min_sample_leaf with minimum mean absolute error
-
-#### OptimalMaxDepth
-
-- **Parameters:**
- - candidate_nodes: A list of max_depth values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for max_depth with minimum mean absolute error
-
-### OptimalRandomForestRegressors.py
-
-#### OptimalMaxLeafNodes
-
-- **Parameters:**
- - candidate_nodes: A list of max_leaf_nodes values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for max_leaf_node with minimum mean absolute error
-
-#### OptimalNEstimators
-
-- **Parameters:**
- - candidate_estimators: A list of n_estimators values to test
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for n_estimators with minimum mean absolute error
-
-#### OptimalBootstrap
-
-- **Parameters:**
- - trainX, trainy: Training data (features and labels)
- - valX, valy: Validation data (features and labels)
- - mae: Original Mean Absolute Error
-- **Returns:**
-  - Optimal value for bootstrap with minimum mean absolute error
-
-## Repository Structure
-
-```
-OptimalRegressors/
-│
-├── OptimalDecisionTreeRegressors.py # Methods for getting optimal hyperparameters for DecisionTree
-├── OptimalRandomForestRegressors.py # Methods for getting optimal hyperparameters for RandomForest
-├── regressor.py      # Main library file
-├── requirements.txt         # Python dependencies
-├── LICENSE                  # License information
-└── README.md                # Project documentation
-```
