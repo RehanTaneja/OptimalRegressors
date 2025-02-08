@@ -55,6 +55,22 @@ print("Training Accuracy: ", train_accuracy)
 print("Validation Accuracy: ", val_accuracy)
 ```
 This will automatically perform the necessary hyperparameter tuning and return the best regressor or classifier.
+
+### Getting Best Model
+To get the overall best model by comparing multiple models. follow these steps:
+
+ - Prepare your data: Ensure you have the training and validation datasets ready (train_X, train_y, val_X, val_y).
+ - Create the best model object:
+```Python
+# For regression
+best_model = BestModel(train_X,train_y,val_X,val_y,type_='regressor')
+
+# Get the best model
+best_overall_model = best_model.optimize() # This will directly store the model (like DecisionTreeRegressor(),Ridge()...etc)
+
+#Evaluate Model
+training_accuracy,validation_accuracy = best_model.evaluate()
+```
 ## File Structure
 ```bash
 ml-model-optimization/
