@@ -84,6 +84,7 @@ ml-model-optimization/
 ├── OptimalRF.py           # Random Forest optimization
 ├── OptimalSVM.py          # Support Vector Machine optimization
 ├── OptimalXGB.py          # XGBoost optimization
+├── regressors.py          # comparing models and returning best overall model
 ├── requirements.txt       # Dependencies
 ├── README.md              # Documentation
 ```
