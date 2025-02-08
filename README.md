@@ -33,6 +33,7 @@ from OptimalLinear import OptimalLinear
 from OptimalRF import OptimalRF
 from OptimalSVM import OptimalSVM
 from ClassifyDatasets import classify, get_accuracy_classifiers, get_accuracy_regressors
+from regressors import BestModel
 ```
 ### Optimizing a Model
 To optimize a specific model (e.g., XGBoost Regressor), follow these steps:
